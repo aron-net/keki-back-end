@@ -16,6 +16,11 @@ Rails.application.configure do
 
   # Enable server timing
   config.server_timing = true
+  
+  config.session_store :cookie_store, key: '_interslice_session'
+  config.middleware.use ActionDispatch::Cookies
+  config.middleware.use config.session_store, 
+  config.session_options
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
@@ -59,6 +64,8 @@ Rails.application.configure do
 
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
+  
+  Rails.application.config.session_store :cookie_store, key: 'keki-back-end', domain: :all, same_site: :none, secure: true, tld_length: 3
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
